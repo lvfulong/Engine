@@ -54,8 +54,25 @@ if (NOT MSVC)
 endif()
 
 # we're building a library
-add_library(${TARGET} STATIC ${PRIVATE_HDRS} ${PUBLIC_HDRS} ${SRCS})
+#add_library(${TARGET} STATIC ${PRIVATE_HDRS} ${PUBLIC_HDRS} ${SRCS})
 
 # specify where the public headers of this library are
-target_include_directories (${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
-set_target_properties(${TARGET} PROPERTIES FOLDER ThirdParty)
+#target_include_directories (${TARGET} PUBLIC ${PUBLIC_HDR_DIR})
+#set_target_properties(${TARGET} PROPERTIES FOLDER ThirdParty)
+
+add_library(${TARGET} STATIC "")
+
+target_sources(${TARGET}
+  PRIVATE
+    ${PRIVATE_HDRS}
+  PUBLIC
+    ${PUBLIC_HDRS}
+	${SRCS}
+  )
+  
+target_include_directories(${TARGET}
+  PUBLIC 
+    ${PUBLIC_HDR_DIR}
+  )
+  
+#set_target_properties(${TARGET} PROPERTIES FOLDER third_party)
