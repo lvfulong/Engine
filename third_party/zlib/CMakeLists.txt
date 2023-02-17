@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 project(z)
 
-set(OUR_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
+set(OUR_DIR ${CMAKE_CURRENT_SOURCE_DIR}/zlib)
 
 set(TARGET              z)
 set(SRC_DIR             ${OUR_DIR})
