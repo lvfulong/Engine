@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(engine)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 message("Top level CMakeLists.txt")
 add_subdirectory(third_party/zlib)
