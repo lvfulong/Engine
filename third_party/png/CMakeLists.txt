@@ -3,6 +3,11 @@ project(png)
 
 set(OUR_DIR ${CMAKE_CURRENT_SOURCE_DIR}/png)
 
+# No awk available to generate sources; use pre-built pnglibconf.h
+configure_file(${OUR_DIR}/scripts/pnglibconf.h.prebuilt
+               ${OUR_DIR}/pnglibconf.h)
+add_custom_target(genfiles) # Dummy
+
 set(TARGET              png)
 set(SRC_DIR             ${OUR_DIR})
 set(PUBLIC_HDR_DIR      ${OUR_DIR})
@@ -41,7 +46,12 @@ set(SRCS
     ${SRC_DIR}/pngwtran.c
     ${SRC_DIR}/pngwutil.c
 )
-
+if (NOT MSVC)
+    add_definitions(
+        -Wno-implicit-function-declaration
+        -Wno-shift-negative-value
+    )
+endif()
 if (NOT LINUX AND NOT WIN32)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
 endif()
